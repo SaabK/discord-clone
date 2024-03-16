@@ -2,32 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.channel {
+    @apply relative w-12 h-12 bg-grey cursor-pointer flex items-center;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.channel.active,
+.channel.active img {
+    border-radius: 1rem;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.channel,
+.channel img {
+    border-radius: 999px;
+    transition: border-radius 100ms ease-in-out;
+}
+
+.channel:hover,
+.channel:hover img {
+    border-radius: 1rem;
+}
+
+.channel::before {
+    content: "";
+    position: absolute;
+    left: -1rem;
+
+    width: 8%;
+    height: 0%;
+
+    border-radius: 0 3px 3px 0;
+
+    background: white;
+
+    z-index: 1;
+    transition: all 0.3s ease-in-out;
+}
+
+.channel:hover::before {
+    left: -0.75rem;
+    height: 40%;
+}
+
+.active.channel::before {
+    left: -0.75rem;
+    height: 75%;
 }
