@@ -10,6 +10,14 @@
     box-sizing: border-box;
 }
 
+/* Utilities */
+
+.scrollbar {
+    @apply min-h-screen max-h-screen overflow-y-scroll scrollbar-none scroll-smooth hover:scrollbar-thin scrollbar-track-darkGrey scrollbar-thumb-lightGrey/60;
+}
+
+/* Misc */
+
 .channel {
     @apply relative w-12 h-12 bg-grey cursor-pointer flex items-center;
 }

@@ -1,3 +1,9 @@
+import Sidebar from "./_components/Sidebar";
+
 export default function Me() {
-    return <div>Me</div>;
+    return (
+        <div>
+            <Sidebar />
+        </div>
+    );
 }

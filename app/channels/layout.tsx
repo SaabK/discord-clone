@@ -6,7 +6,7 @@ export default function ChannelsLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <main className="">
+        <main className="flex">
             <Navigation />
             {children}
         </main>

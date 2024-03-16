@@ -12,10 +12,11 @@ const config: Config = {
                 darkGrey: "#1e1f22",
                 mediumGrey: "#2b2d31",
                 grey: "#313338",
+                lightGrey: "#949ba4",
                 discordBlue: "#5865F2",
             },
         },
     },
-    plugins: [],
+    plugins: [require("tailwind-scrollbar")],
 };
 export default config;

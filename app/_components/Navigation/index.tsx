@@ -14,7 +14,7 @@ export default function Navigation() {
     }
 
     return (
-        <nav className="bg-darkGrey h-screen w-max fixed p-3">
+        <nav className="bg-darkGrey h-screen w-max p-3">
             <div
                 className={cn(
                     "channel hover:bg-discordBlue",
