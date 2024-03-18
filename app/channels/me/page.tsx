@@ -1,9 +1,3 @@
-import Sidebar from "./_components/Sidebar";
-
 export default function Me() {
-    return (
-        <div>
-            <Sidebar />
-        </div>
-    );
+    return <div>{/* Here goes the friends section */}</div>;
 }

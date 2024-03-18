@@ -12,8 +12,12 @@
 
 /* Utilities */
 
-.scrollbar {
+/* .custom-scrollbar {
     @apply min-h-screen max-h-screen overflow-y-scroll scrollbar-none scroll-smooth hover:scrollbar-thin scrollbar-track-darkGrey scrollbar-thumb-lightGrey/60;
+} */
+
+.custom-scrollbar {
+    @apply min-h-screen max-h-screen overflow-y-auto scroll-smooth scrollbar scrollbar-track-darkGrey scrollbar-thumb-lightGrey/60;
 }
 
 /* Misc */

@@ -7,7 +7,7 @@ import Friends from "./Friends";
 
 export default function Sidebar() {
     return (
-        <aside className="bg-mediumGrey min-h-screen max-h-screen overflow-y-scroll min-w-60 scrollbar-none scroll-smooth hover:scrollbar-thin scrollbar-track-darkGrey scrollbar-thumb-lightGrey/60">
+        <aside className="bg-mediumGrey min-w-60 custom-scrollbar !scrollbar-none hover:!scrollbar-thin">
             <div className="p-2.5">
                 <Search />
             </div>
