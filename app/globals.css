@@ -24,6 +24,10 @@
     @apply px-2.5 py-1.5 border-b-2 border-darkGrey/60 min-h-12 max-h-12 flex items-center;
 }
 
+.btn-primary {
+    @apply bg-discordBlue p-2 rounded hover:bg-discordBlue/80 transition-all duration-300 font-medium;
+}
+
 /* Misc */
 
 .channel {
