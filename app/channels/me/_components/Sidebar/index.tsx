@@ -17,7 +17,7 @@ export default function Sidebar() {
 
     return (
         <aside className="bg-mediumGrey min-w-60 max-h-screen overflow-hidden  flex flex-col">
-            <div className="p-2.5 border-b-2 border-darkGrey/60">
+            <div className="header">
                 <Search />
             </div>
 

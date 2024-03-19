@@ -20,6 +20,10 @@
     @apply min-h-screen max-h-screen overflow-y-auto scroll-smooth scrollbar scrollbar-track-darkGrey scrollbar-thumb-lightGrey/60;
 }
 
+.header {
+    @apply px-2.5 py-1.5 border-b-2 border-darkGrey/60 min-h-12 max-h-12 flex items-center;
+}
+
 /* Misc */
 
 .channel {
