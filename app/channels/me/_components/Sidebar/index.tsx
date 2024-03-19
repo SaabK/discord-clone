@@ -6,6 +6,7 @@ import { SmallHeading } from "@/app/_components/Headings";
 import { FaPlus } from "react-icons/fa";
 import { friends, meOptions } from "@/lib/data";
 import Tabs from "./Tabs";
+import User from "./User";
 
 export default function Sidebar() {
     const [active, setActive] = useState<number | null>(null);
@@ -15,14 +16,12 @@ export default function Sidebar() {
     };
 
     return (
-        <aside className="bg-mediumGrey min-w-60 custom-scrollbar !scrollbar-none hover:!scrollbar-thin">
-            <div className="p-2.5">
+        <aside className="bg-mediumGrey min-w-60 max-h-screen overflow-hidden  flex flex-col">
+            <div className="p-2.5 border-b-2 border-darkGrey/60">
                 <Search />
             </div>
 
-            <hr className="border-darkGrey/60 border" />
-
-            <div className="p-2.5 text-white">
+            <div className="p-2.5 text-white h-full overflow-y-auto scroll-smooth scrollbar-thin scrollbar-track-darkGrey scrollbar-thumb-lightGrey/60 ">
                 <menu className="space-y-1">
                     {meOptions.map((option, index) => (
                         <Tabs
@@ -57,6 +56,8 @@ export default function Sidebar() {
                     </menu>
                 </div>
             </div>
+
+            <User />
         </aside>
     );
 }
