@@ -6,6 +6,7 @@ import Link from "next/link";
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { supabase } from "@/lib/db";
 
 export default function RegisterCard() {
     const formik = useFormik({
@@ -30,9 +31,23 @@ export default function RegisterCard() {
                 .required("You cannot leave this empty!")
                 .min(8, "Must be at least 8 characters"),
         }),
-        onSubmit: (values) => {
+        onSubmit: async (values) => {
             // Submit the values to backend
-            console.log(values);
+            // console.log(values);
+
+            const { data, error } = await supabase.auth.signUp({
+                email: values.email,
+                password: values.password,
+                options: {
+                    data: {
+                        username: values.username,
+                        dName: values.dName,
+                    },
+                },
+            });
+
+            console.log("Data: ", data);
+            console.log("Error: ", error);
         },
     });
 
