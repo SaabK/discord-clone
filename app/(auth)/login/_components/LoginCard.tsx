@@ -5,8 +5,12 @@ import AuthInput from "../../_components/AuthInput";
 import Link from "next/link";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useAppDispatch } from "@/lib/hooks";
+import { loginUser } from "@/lib/features/user/userThunk";
 
 export default function LoginCard() {
+    const dispatch = useAppDispatch();
+
     const formik = useFormik({
         initialValues: {
             email: "",
@@ -22,6 +26,8 @@ export default function LoginCard() {
         }),
         onSubmit: (values) => {
             // Submit the values to backend
+
+            dispatch(loginUser({ ...values }));
 
             console.log(values);
         },

@@ -7,8 +7,12 @@ import Link from "next/link";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { supabase } from "@/lib/db";
+import { useAppDispatch } from "@/lib/hooks";
+import { registerUser } from "@/lib/features/user/userThunk";
 
 export default function RegisterCard() {
+    const dispatch = useAppDispatch();
+
     const formik = useFormik({
         initialValues: {
             username: "",
@@ -35,19 +39,11 @@ export default function RegisterCard() {
             // Submit the values to backend
             // console.log(values);
 
-            const { data, error } = await supabase.auth.signUp({
-                email: values.email,
-                password: values.password,
-                options: {
-                    data: {
-                        username: values.username,
-                        dName: values.dName,
-                    },
-                },
-            });
-
-            console.log("Data: ", data);
-            console.log("Error: ", error);
+            dispatch(
+                registerUser({
+                    ...values,
+                })
+            );
         },
     });
 
