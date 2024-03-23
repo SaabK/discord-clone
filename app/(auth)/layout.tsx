@@ -13,7 +13,9 @@ export default function AuthLayout({
     const { authenticated } = useAppSelector((state) => state.user);
 
     useEffect(() => {
-        if (authenticated) router.push("/channels/me");
+        (async () => {
+            if (authenticated) router.push("/channels/me");
+        })();
     }, [authenticated]);
 
     return <>{children}</>;
