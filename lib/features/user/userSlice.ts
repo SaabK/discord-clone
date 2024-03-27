@@ -68,8 +68,6 @@ export const userSlice = createSlice({
             .addCase(
                 getUser.fulfilled,
                 (state, { payload: { data, error } }) => {
-                    if (error) return;
-
                     storeUser(state, data.user, error);
                 }
             );

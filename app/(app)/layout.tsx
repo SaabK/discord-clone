@@ -13,11 +13,15 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
     useEffect(() => {
         dispatch(getUser());
-        if (authenticated) router.push("/channels/me");
+        if (authenticated) {
+            router.push("/channels/me");
+            console.log("Authenticated in AppLayout!");
+        }
 
-        // Even if I'm authenticated, I am pushed to the login page. So the best thing to do is to display some kind of message in login or register page.
-
-        if (!authenticated) router.push("/login");
+        if (!authenticated) {
+            router.push("/login");
+            console.log("Not Authenticated in AppLayout!");
+        }
     }, [authenticated]);
 
     return <>{children}</>;
