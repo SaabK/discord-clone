@@ -1,6 +1,5 @@
 import { createSlice, current } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
-import { loginUser, registerUser } from "./userThunk";
+import { getUser, loginUser, registerUser } from "./userThunk";
 import { User } from "@supabase/supabase-js";
 
 export interface UserState {
@@ -8,6 +7,7 @@ export interface UserState {
     dName: string;
     email: string;
     authenticated: boolean;
+    error: string;
 }
 
 const initialState: UserState = {
@@ -15,12 +15,21 @@ const initialState: UserState = {
     dName: "",
     email: "",
     authenticated: false,
+    error: "",
 };
 
-function storeUser(state: UserState, user: User | null) {
+function storeUser(state: UserState, user: User | null, error: any) {
+    if (error && error.name) {
+        state.authenticated = false;
+        state.error = error.name;
+        return;
+    }
+
     state.email = user?.email as string;
     state.username = user?.user_metadata.username;
     state.dName = user?.user_metadata.dName;
+
+    state.authenticated = true;
 }
 
 export const userSlice = createSlice({
@@ -29,13 +38,13 @@ export const userSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
+            // -- Registeration --
             .addCase(
                 registerUser.fulfilled,
                 (state, { payload: { data, error } }) => {
                     // console.log("Your user successfully created: ", data);
 
-                    storeUser(state, data.user);
-                    state.authenticated = true;
+                    storeUser(state, data.user, error);
 
                     // console.log("state after registering: ", current(state));
                 }
@@ -43,18 +52,26 @@ export const userSlice = createSlice({
             .addCase(registerUser.rejected, () => {
                 console.log("Some error occurred during registeration");
             })
-
+            // -- Login --
             .addCase(
                 loginUser.fulfilled,
                 (state, { payload: { data, error } }) => {
-                    console.log("Your user was logged in!", data);
+                    // console.log("Your user was logged in!", { data, error });
 
-                    storeUser(state, data.user);
-                    state.authenticated = true;
+                    storeUser(state, data.user, error);
                 }
             )
             .addCase(loginUser.rejected, () =>
                 console.log("Some error occurred during login")
+            )
+            // -- Get the user --
+            .addCase(
+                getUser.fulfilled,
+                (state, { payload: { data, error } }) => {
+                    if (error) return;
+
+                    storeUser(state, data.user, error);
+                }
             );
     },
 });

@@ -1,5 +1,5 @@
 import React from "react";
-import dyno from "../../../../../assets/profiles/dyno.webp";
+import dyno from "../../../../../../assets/profiles/dyno.webp";
 import Image from "next/image";
 import ChatInput from "./ChatInput";
 import Messages from "./Messages";

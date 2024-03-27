@@ -6,7 +6,6 @@ import Link from "next/link";
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { supabase } from "@/lib/db";
 import { useAppDispatch } from "@/lib/hooks";
 import { registerUser } from "@/lib/features/user/userThunk";
 

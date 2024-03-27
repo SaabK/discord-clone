@@ -1,5 +1,5 @@
 import { supabase } from "@/lib/db";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const registerUser = createAsyncThunk(
     "user/register",
@@ -35,3 +35,9 @@ export const loginUser = createAsyncThunk(
         return response;
     }
 );
+
+export const getUser = createAsyncThunk("user/getUser", async () => {
+    const response = await supabase.auth.getUser();
+
+    return response;
+});
